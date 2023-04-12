@@ -1,0 +1,129 @@
+definitions:
+  controller.BookInput:
+    properties:
+      author:
+        type: string
+      name_book:
+        type: string
+    type: object
+  models.Book:
+    properties:
+      author:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      name_book:
+        type: string
+      updated_at:
+        type: string
+    type: object
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+paths:
+  /books:
+    get:
+      description: Get a list of Book.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Book'
+            type: array
+      summary: Get all Book.
+      tags:
+      - Book
+    post:
+      description: Creating a new Book.
+      parameters:
+      - description: the body to create a new Book
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.BookInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+      summary: Create New Book.
+      tags:
+      - Book
+  /books/{id}:
+    delete:
+      description: Delete a Book by id.
+      parameters:
+      - description: Book id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: boolean
+            type: object
+      summary: Delete one Book.
+      tags:
+      - Book
+    get:
+      description: Get an Book by id.
+      parameters:
+      - description: Book id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+      summary: Get Book.
+      tags:
+      - Book
+    patch:
+      description: Update Book by id.
+      parameters:
+      - description: Book id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: the body to update book
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.BookInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+      summary: Update Book.
+      tags:
+      - Book
+swagger: "2.0"
